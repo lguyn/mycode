@@ -132,7 +132,7 @@ while True:
     input('I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?')
     if input == 'almond joy' : 
         print('Congratualtions... you win!')
-    elif input != 'almond joy' :
+    else: 
         print('Wrong... game over!')
 
     break
