@@ -46,7 +46,7 @@ rooms = {
             'Kitchen' : {
                   'west' : 'Hallway',
                   'south' : 'Entrance',
-                  'secret passage' : 'Outside', 
+                  'secret passage' : 'Secret Passage', 
                   'description' : 'A large, but seemingly empty kitchen. The hallway is to the west and the entrance is south.',
                 },
             'Dining Room' : {
@@ -125,11 +125,16 @@ while True:
       print('Can\'t get ' + move[1] + '!')
 
   if move[0] == 'read' :
-      print('Gosh my parents never let me have junk food. Good thing I made a SECRET PASSAGE in the kitchen that leads to the outdoors. Now I can go get whatever food whenever I want!')
+      print('Gosh my parents never let me have junk food. Good thing I made a SECRET PASSAGE under the sink in the kitchen that leads to the outdoors. Now I can go get whatever food whenever I want. I really love almond joy!')
 
   ## Define how a player can win
-  if currentRoom == 'Outside':
-    print('You escaped the mansion... YOU WIN!')
+  if currentRoom == 'Secret Passage':
+    input('I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?')
+    if input == 'almond joy' : 
+        print('Congratualtions... you win!')
+    elif input != 'almond joy' :
+        print('Wrong... game over!')
+
     break
 
 
