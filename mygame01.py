@@ -62,7 +62,7 @@ rooms = {
             'Dave\'s Room' : {
                   'south' : 'Upstairs',
                   'item' : 'diary',
-                  'description' : 'A dark room with nothing but a bed and anightstand. On the nightstand lies a diary.',
+                  'description' : 'A dark room with nothing but a bed and a nightstand. On the nightstand lies a diary.',
                },   
             'Entrance' : {
                   'north' : 'Kitchen' ,
@@ -127,14 +127,15 @@ while True:
   if move[0] == 'read' :
       print('Gosh my parents never let me have junk food. Good thing I made a SECRET PASSAGE under the sink in the kitchen that leads to the outdoors. Now I can go get whatever food whenever I want. I really love almond joy!')
 
-  ## Define how a player can win
+ ## Define how a player can win
   if currentRoom == 'Secret Passage':
-    input('I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?')
-    if input == 'almond joy' : 
-        print('Congratualtions... you win!')
-    else: 
-        print('Wrong... game over!')
-
+    print('Congratulations... you win!')
+    #input("I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?")
+  #if input == "almond joy" : 
+    #print("Congratualtions... you win!")
+  #elif input != "almond joy" : 
+    #print("Wrong... game over!")
     break
+
 
 
