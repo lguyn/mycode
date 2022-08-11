@@ -124,7 +124,7 @@ while True:
       #tell them they can't get it
       print('Can\'t get ' + move[1] + '!')
 
-  if move[0] == 'read' :
+  if move[0] == "read" :
       print('Gosh my parents never let me have junk food. Good thing I made a SECRET PASSAGE under the sink in the kitchen that leads to the outdoors. Now I can go get whatever food whenever I want. I really love almond joy!')
 
  ## Define how a player can win
