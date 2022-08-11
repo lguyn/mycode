@@ -128,14 +128,11 @@ while True:
       print('Gosh my parents never let me have junk food. Good thing I made a SECRET PASSAGE under the sink in the kitchen that leads to the outdoors. Now I can go get whatever food whenever I want. I really love almond joy!')
 
  ## Define how a player can win
-  if currentRoom == 'Secret Passage':
-    print('Congratulations... you win!')
-    #input("I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?")
-  #if input == "almond joy" : 
-    #print("Congratualtions... you win!")
-  #elif input != "almond joy" : 
-    #print("Wrong... game over!")
+  while currentRoom == 'Secret Passage':
+    input("I am the ghost of Dave. Answer this question correctly and you may pass. Answer incorrectly and die. What is my favorite food?")
+    if input == "almond joy" : 
+      print("Congratualtions... you win!")
+    else:
+      print("Wrong... you lose!")
     break
-
-
 
