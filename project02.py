@@ -1,9 +1,17 @@
 #!/usr/bin/python3
 
-import pandas as pd
+import requests
 
-kind = pd.read_txt('pokedex_gen1.txt')
+URL = "https://pokeapi.co/api/v2/pokemon"
 
-print(kind)
+def main():
+    pokemon = requests.get(f"{URL}?limit=151")
+    pokemon = pokemon.json()
 
+    for poke in pokemon["results"]:
+        print(poke.get("name"))
 
+    print(f"Total number of Pokemon in Generation 1: {len(pokemon['results'])}")
+
+if __name__ == "__main__":
+    main()
