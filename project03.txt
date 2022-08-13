@@ -1,0 +1,144 @@
+1- con_with_logging.py
+#!/usr/bin/env python
+# importing Netmiko from the netmiko library
+# importing getpass from the getpass library
+from netmiko import Netmiko
+from getpass import getpass
+
+# imports logging module
+import logging
+# configures the root logger and sends log messages to filename 
+# test.log
+# severity level set at debug
+logging.basicConfig(filename='test.log', level=logging.DEBUG)
+# returns a logger with the name netmiko
+logger = logging.getLogger("netmiko")
+
+# information about available devices
+# getpass() will prompt for a password
+cisco1 = {
+    'host': 'cisco1.twb-tech.com', 
+    'username': 'pyclass', 
+    'password': getpass(), 
+    'device_type': 'cisco_ios',
+}
+# connect to cisco1
+# issue command to gather desired information
+# disconnect from cisco1
+net_connect = Netmiko(**cisco1)
+print(net_connect.find_prompt())
+net_connect.disconnect()
+
+
+
+2- my_devices.py
+# import getpass from the getpass library
+from getpass import getpass
+
+# creates a prompt asking for a standard password to login with
+std_pwd = getpass("Enter standard password: ")
+
+# possible device to access called pynet_rtr1
+pynet_rtr1 = {
+    'device_type': 'cisco_ios',
+    'ip': '184.105.247.70',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called pynet_rtr2
+pynet_rtr2 = {
+    'device_type': 'cisco_ios',
+    'ip': '184.105.247.71',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called pynet_sw1
+pynet_sw1 = {
+    'device_type': 'arista_eos',
+    'ip': '184.105.247.72',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called pynet_sw2
+pynet_sw2 = {
+    'device_type': 'arista_eos',
+    'ip': '184.105.247.73',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called pynet_sw3
+pynet_sw3 = {
+    'device_type': 'arista_eos',
+    'ip': '184.105.247.74',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called pynet_sw4
+pynet_sw4 = {
+    'device_type': 'arista_eos',
+    'ip': '184.105.247.75',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# possible device to access called juniper_srx
+juniper_srx = {
+    'device_type': 'juniper_junos',
+    'ip': '184.105.247.76',
+    'username': 'pyclass',
+    'password': std_pwd,
+}
+
+# a list of all devices
+device_list = [
+        pynet_rtr1,
+        pynet_rtr2,
+        pynet_sw1,
+        pynet_sw2,
+        pynet_sw3,
+        pynet_sw4,
+        juniper_srx,
+]
+
+
+
+3- secure_copy.py
+#!/usr/bin/env python
+# import getpass from the getpass library
+# import ConnectHandler and file_transfer from the netmiko library
+from getpass import getpass
+from netmiko import ConnectHandler, file_transfer
+
+# prompts the user to enter a password
+password = getpass()
+
+# available device and its information
+cisco = { 
+    'device_type': 'cisco_ios',
+    'host': 'cisco1.twb-tech.com',
+    'username': 'pyclass',
+    'password': password,
+}
+
+# the contents of transfer_dict
+source_file = 'test1.txt'
+dest_file = 'test1.txt'
+direction = 'put'
+file_system = 'flash:'
+
+# ssh in cisco using ConnectHandler
+# copy "transfer_dict" using file_transfer and print it
+ssh_conn = ConnectHandler(**cisco)
+transfer_dict = file_transfer(ssh_conn,
+                              source_file=source_file, 
+                              dest_file=dest_file,
+                              file_system=file_system, 
+                              direction=direction,
+                              overwrite_file=True)
+
+print(transfer_dict)
