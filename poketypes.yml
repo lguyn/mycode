@@ -1,0 +1,17 @@
+fire:
+  strong:
+    - grass
+    - bug
+  weak:
+    - water
+    - ground
+water:
+  strong:
+    - fire
+  weak:
+    - grass
+grass:
+  strong:
+    - water 
+  weak:
+    - fire

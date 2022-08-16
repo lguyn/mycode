@@ -6,41 +6,49 @@ import csv
 
 URL = "https://pokeapi.co/api/v2/pokemon"
 
-def pokelist():
-    pokemon = requests.get(f"{URL}?limit=151")
-    pokemon = pokemon.json()
-
-    for poke in pokemon["results"]:
-        print(poke.get("name"))
-
 def main():
-    print("Welcome to the Pokedex")
-    time.sleep(1)
-    print("Search for Pokemon: Press 1\nFull list of Pokemon: Press 2\nType matchups: Press 3")
-    choice=input(">")
-    # asks for pokemon name then returns name, id, type, attack, and defense vertically
-    if choice == "1":
-        pokechoice.lower() = input("Choose a Pokemon:")
-        with open("pokedex.txt") as pokedata:
-        for x in csv.DictReader(pokedata):
-        if pokechoice in x["Name"]: print(f'{x["Name"]}\n{x["#"]}\n{x["Type 1"]}\n{x["Attack"]}\n{x["Defense"]}')
-    
-    # prints the 151 pokemon in gen 1
-    elif choice == "2":
-        for poke in pokemon["results"]:
-        print(poke.get("name"))
-    print(f"Total number of Pokemon in Generation 1: {len(pokemon['results'])}")
-    
-    # is it bad to hardcode type matchups? 
-    elif choice == "3":
-        kind=input("What type of Pokemon would you like to know about?")
+    while True:
+        print("Welcome to the Pokedex")
+        time.sleep(2)
+        print("Search for Pokemon: Press 1\nSearch by type: Press 2\nFull list of Pokemon: Press 3\nType matchups: Press 4")
+        choice=input(">")
+        if choice == "1":
+            pokechoice = input("Please choose a Pokemon:\n").lower()
+            with open("pokedex.txt") as pokedata:
+                for x in csv.DictReader(pokedata):
+                    if pokechoice in x["Name"].lower(): 
+                        print(f'Name...{x["Name"]}\nID Number...{x["#"]}\nType...{x["Type 1"]}\nAttack...{x["Attack"]}\nDefense...{x["Defense"]}')
+       
+        elif choice == "2":
+           poketype = input("Please enter a type:\n").lower()
+           with open("gen1types.txt") as types:
+                    for x in csv.DictReader(types):
+                        if poketype in x["Type"].lower():
+                            print(f'{x["Type"]} Pokemon in Generation 1 Include:\n{x["Pokemon"]}')
 
-    # bring user back to initial prompt if request is not found
-    # can I have it say "Please try again" or no because choice=input was defined above?
-    else:
-        choice = input(">")
+        elif choice == "3":
+            pokemon = requests.get(f"{URL}?limit=151")
+            pokemon = pokemon.json()
 
-    if __name__ == "__main__":
-        main()
+            for poke in pokemon["results"]:
+                print(poke.get("name"))
 
-    # maybe add pictures or evolution information 
+            print(f"Total number of Pokemon in Generation 1 is {len(pokemon['results'])}")
+
+        elif choice == "4":
+            pokematchup = input("Please enter a type:\n").lower()
+            with open("typematchups.txt") as matchups:
+                    for x in csv.DictReader(matchups):
+                        if pokematchup in x["Type"].lower():
+                            print(f'Strong against...{x["Strong"]}\nWeak against...{x["Weak"]}\nImmune to...{x["Immune"]}')
+
+        elif choice == "exit":
+            break
+if __name__ == "__main__":
+    main()
+
+
+# when invalid entry occurs, go back to same prompt and not all the way back to "welcome
+# to pokedex"
+
+# add spaces or something to separate input from output
