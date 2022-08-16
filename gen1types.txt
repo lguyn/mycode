@@ -4,7 +4,7 @@ Type,Pokemon
 
 Bug,Caterpie+Metapod+Butterfree+Weedle+Kakuna+Beedrill+Paras+Parasect+Venonat+Venomoth+Scyther+Pinsir
 
-Dark, 
+Dark,None 
 
 Dragon,Dratini+Dragonair+Dragonite
 
